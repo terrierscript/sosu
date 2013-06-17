@@ -9,7 +9,7 @@ def soinsu(num:Int) : List[Int] = {
   var isSo = true
   var spl:Int = 0
   breakable{
-    for(i <- 2 to (num - 1) ){
+    (2 until num).foreach{ i =>
       if(num % i == 0){
         isSo = false
         spl = num / i
@@ -18,6 +18,7 @@ def soinsu(num:Int) : List[Int] = {
       }
     }
   }
+
   if(isSo){
     list = list :+ num
     return list
@@ -44,11 +45,13 @@ def mult(a : List[Int]) :Int = {
   return result
 }
  
- 
-(0 to 600).foreach{ i =>
-  val sosuResult = soinsu(i)
-  val primeResult = prime(i)
-  (assert(mult(sosuResult)  == i))
-  (assert(mult(primeResult) == i))
-  println(i,sosuResult)
+def printer(numTo : Int, func : Int => List[Int]){
+  val start = System.currentTimeMillis
+  (0 to numTo).foreach{ i =>
+    val result = func(i)
+    (assert(mult(result)  == i))
+    println(i,result)
+  }
+  val end = System.currentTimeMillis
 }
+printer(10000, soinsu)
