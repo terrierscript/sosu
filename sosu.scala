@@ -9,7 +9,8 @@ def soinsu(num:Int) : List[Int] = {
   var isSo = true
   var spl:Int = 0
   breakable{
-    (2 until num).foreach{ i =>
+    var max :Int = sqrt(num).toInt
+    (2 until max).foreach{ i =>
       if(num % i == 0){
         isSo = false
         spl = num / i
