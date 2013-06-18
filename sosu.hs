@@ -9,7 +9,7 @@ sosu n = do
         else sosu spl ++ (sosu (div n spl))
 
 split :: Int -> Int
-split n = _split n (n-1) -- TODO sqrt
+split n = _split n ((ceiling . sqrt. fromIntegral)n) -- TODO sqrt
 
 _split :: Int -> Int -> Int
 _split n 1 = n
@@ -25,4 +25,4 @@ print_sosu n = do
 
 main = do
     putStrLn "start"
-    print_sosu 1000
+    print_sosu 10000
